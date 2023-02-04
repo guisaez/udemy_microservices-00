@@ -57,7 +57,62 @@ kubectl apply -f [config file name]
 kubectl describe pod [pod_name]
 ```
 
+### Deployment Commands
 
+```shell
+kubectl get deployments
 
+kubectl describe deployment [deployment name]
 
+kubectl apply - f [config file name]
+
+kubectl delete deployment [dpl_name]
+```
+
+### Types of Services
+
+* Cluster IP: Sets up easy-to-remember URL to access a pod. Only exposes pods in the cluster.
+* Node Port: Makes a pd accessible from outside the cluster. Usually only used for dev purposes.
+* Makes a pod accessible from outside the cluster. THis is the right way to expose a pod to the outside world.
+* Redirects an in_cluster request to CNAME url ...
+
+### Creating a Node Port Service
+
+```
+apiVersion: v1
+kind: Service
+metadata:
+  name: posts-srv
+spec:
+  type: NodePort
+  selector:
+    app: posts
+  ports:
+    - name: posts
+    protocol: TCP
+    port: 4000
+    targetPort: 4000
+```
+
+Notes:
+* Port vs. TargetPort: Application listen through port and sends info through targetPort. 
+* Port and TargetPort do not need to be identical. 
+
+### Create A Cluster IP:
+
+```
+apiVersion: v1
+kind: Service
+metadata:
+  name: posts-clusterip-srv
+spec:
+  type: ClusterIP
+  selector:
+    app: posts
+  ports:
+    - name: posts
+      protocol: TCP
+      port: 4000
+      targetPort: 4000
+```
 
