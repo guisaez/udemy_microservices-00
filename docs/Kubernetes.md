@@ -123,5 +123,4 @@ Have a one single point of entry in our cluster. the Load Balancer will route th
 * Load Balancer Service: Tells Kubernetes to reach out to its provider and provision a load balancer. Gets traffic into a single pod.
 * Ingress or Ingress Controller: A pod with a set of routing rules to distribute traffic to other services. 
 
- 
 
